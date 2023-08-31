@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>IFrame Example</title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    </head>
+    <body>
+        <!-- Links to change the iframe source -->
+        <p><a href="http://www.youtube.com/embed/Q5im0Ssyyus" class="this-iframe">Charlie 1</a></p>
+        <p><a href="http://www.youtube.com/embed/QFCSXr6qnv4" class="this-iframe">Charlie 2</a></p>
+        <p><a href="http://www.youtube.com/embed/eaCCkfjPm0o" class="this-iframe">Charlie 3</a></p>
+
+        <!-- The iframe -->
+        <iframe name="someFrame" id="someFrame" width="560" height="315"></iframe>
+
+        <script>
+            $(document).ready(function () {
+                $(".this-iframe").click(function (e) {
+                    e.preventDefault();
+                    $("#someFrame").attr("src", $(this).attr("href"));
+                });
+            });
+        </script>
+    </body>
+</html>

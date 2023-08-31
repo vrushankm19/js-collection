@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Validation Example</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="alphaOnlyInput">Alpha Only: </label>
+        <input type="text" id="alphaOnlyInput" class="alpha-only" required><br><br>
+        
+        <label for="alphaNumericInput">Alpha-Numeric: </label>
+        <input type="text" id="alphaNumericInput" class="alpha-numeric-only" required><br><br>
+        
+        <label for="numericInput">Numeric Only: </label>
+        <input type="text" id="numericInput" class="numeric-only" required><br><br>
+        
+        <input type="submit" value="Submit">
+    </form>
+
+    <script>
+        const alphaOnly = document.querySelectorAll('.alpha-only');
+        alphaOnly.forEach(function(element) {
+            element.addEventListener('beforeinput', function(event) {
+                if (event.inputType === 'deleteContentBackward') {
+                    return;
+                }
+                var value = this.value;
+                if (!/^[a-zA-Z ]$/.test(event.data) || (event.data === ' ' && value.length === 0)) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        const alphaNumeric = document.querySelectorAll('.alpha-numeric-only');
+        alphaNumeric.forEach(function(element) {
+            element.addEventListener('beforeinput', function(event) {
+                if (event.inputType === 'deleteContentBackward') {
+                    return;
+                }
+
+                var value = this.value;
+
+                if (!/^[a-zA-Z0-9\s]*$/.test(value + event.data)) {
+                    event.preventDefault();
+                }
+            });
+        });
+
+        const numericOnly = document.querySelectorAll('.numeric-only');
+        numericOnly.forEach(function(element) {
+            element.addEventListener('beforeinput', function(event) {
+                if (event.inputType === 'deleteContentBackward') {
+                    return;
+                }
+
+                if (!/^\d$/.test(event.data)) {
+                    event.preventDefault();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
