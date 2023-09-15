@@ -3,7 +3,7 @@
 ## Scroll
 
 
-<a href="https://elaborate-vacherin-9269ea.netlify.app/scroll/Scrolling Example.html" target="_blank">Scrolling Example</a>
+<a href="https://elaborate-vacherin-9269ea.netlify.app/scroll/scrolling-example.html" target="_blank">Scrolling Example</a>
 
 <a href="https://elaborate-vacherin-9269ea.netlify.app/scroll/Image Zoom Box Example.html" target="_blank">Image Zoom Box Example</a>
 
