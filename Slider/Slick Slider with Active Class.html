@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slick Slider with Active Class</title>
+    
+    <!-- Include jQuery from CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+
+    <!-- Include Slick Carousel CSS from CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css"/>
+
+    <!-- Include Slick Carousel JavaScript from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    <style type="text/css">
+    /* Reset some default styles */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f5f5f5;
+    }
+    .focus-area-slider, .focus-area-slider-con {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    
+    /* Slider container styling */
+    .focus-area-slider {
+        position: relative;
+        background-color: #fff;
+        max-width: 800px;
+        margin: 20px auto;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Slide styling */
+    /*.focus-area-slider div {
+        text-align: center;
+        padding: 50px 0;
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }*/
+    
+    .focus-area-slider h2 {
+        font-size: 24px;
+        margin: 10px 0;
+    }
+    
+    .focus-area-slider p {
+        font-size: 16px;
+        color: #555;
+    }
+
+    /* Slick Slider Arrows */
+    .slick-prev,
+    .slick-next {
+        font-size: 24px;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        background: #007bff;
+        color: #fff;
+        border-radius: 50%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 1;
+        cursor: pointer;
+        text-align: center;
+        opacity: 0.7;
+        transition: background 0.3s ease;
+    }
+
+    .slick-prev:hover,
+    .slick-next:hover {
+        background: #0056b3;
+    }
+
+    .slick-prev {
+        left: 10px;
+    }
+
+    .slick-next {
+        right: 10px;
+    }
+
+    /* Active slide styling */
+    .slick-slide.slick-current {
+        background-color: #ff0000; /* Example: Red background for the active slide */
+    }
+    
+    /* Active content section styling */
+    .focus-area-slider-con.show {
+        background-color: red;
+    }
+</style>
+
+</head>
+<body>
+    <div class="focus-area-slider">
+        <div>Slide 1</div>
+        <div>Slide 2</div>
+        <div>Slide 3</div>
+        <!-- Add more slides as needed -->
+    </div>
+
+    <div class="focus-area-slider-con show" data-id="1">Content for Slide 1</div>
+    <div class="focus-area-slider-con" data-id="2">Content for Slide 2</div>
+    <div class="focus-area-slider-con" data-id="3">Content for Slide 3</div>
+    <!-- Add more content sections corresponding to your slides -->
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('.focus-area-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                centerMode: false,
+                adaptiveHeight: false,
+                prevArrow: '<div class="slick-prev">Previous</div>', // Customize the previous arrow content
+                nextArrow: '<div class="slick-next">Next</div>' // Customize the next arrow content
+            });
+
+            $('.focus-area-slider').on('afterChange', function(event, slick, currentSlide) {
+                // Remove the active class from all content sections
+                $('.focus-area-slider-con').removeClass("show");
+                
+                // Add the active class to the corresponding content section
+                $('.focus-area-slider-con[data-id=' + (currentSlide + 1) + ']').addClass("show");
+            });
+        });
+    </script>
+</body>
+</html>

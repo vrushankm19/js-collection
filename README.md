@@ -9,6 +9,13 @@
 
 <a href="https://elaborate-vacherin-9269ea.netlify.app/scroll/NPAV navbar with active class Add on Scroll.html" target="_blank">NPAV navbar with active class Add on Scroll</a>
 
+## Slider
+
+
+<a href="https://elaborate-vacherin-9269ea.netlify.app/Slider/Slick Slider PDP Product Card.html" target="_blank">Slick Slider PDP Product Card</a>
+
+<a href="https://elaborate-vacherin-9269ea.netlify.app/Slider/Slick Slider with Active Class.html" target="_blank">Slick Slider with Active Class</a>
+
 
 ## Accordion
 
