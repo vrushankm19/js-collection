@@ -20,7 +20,7 @@
 ## Accordion
 
 
-<a href="https://elaborate-vacherin-9269ea.netlify.app/Accordion/src/index.html" target="_blank">Accordion</a>
+<a href="https://elaborate-vacherin-9269ea.netlify.app/Accordion/accordion/dist/" target="_blank">Accordion</a>
 
 
 ## Popup
