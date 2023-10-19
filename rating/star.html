@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Star Rating Example</title>
+    
+    <style type="text/css">
+        @font-face {
+  font-family: 'star';
+  src: url('star.woff') format('woff'), url('star.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.star-rating {
+  overflow: hidden;
+  position: relative;
+  height: 1em;
+  line-height: 1;
+  font-size: 1em;
+  width: 5.4em;
+  font-family: 'star';
+  margin-bottom: 0.7rem;
+}
+
+.star-rating::before {
+  content: "\73\73\73\73\73";
+  float: left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  font-family: 'star';
+  letter-spacing: 1px;
+}
+
+span {
+  overflow: hidden;
+  float: left;
+  top: 0;
+  left: 0;
+  position: absolute;
+  padding-top: 1.5em;
+  font-family: 'star';
+}
+
+span::before {
+  content: "\53\53\53\53\53";
+  letter-spacing: 1px;
+  top: 0;
+  position: absolute;
+  left: 0;
+}
+
+.star-rating {
+  margin-bottom: unset;
+  color: #f2c342;
+}
+
+    </style>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> <!-- Include jQuery from a CDN -->
+
+    <div class="star-rating" role="img">
+        <span data-rating="2" class="star-rating-span"></span>
+    </div>
+
+    <script>
+        // Your JavaScript code here
+        $('span[data-rating]').each(function() {
+            const rating = parseFloat($(this).data('rating'));
+            if (!isNaN(rating)) {
+                const percentage = (rating / 5) * 100;
+                $(this).css('width', percentage + '%');
+            }
+        });
+    </script>
+</body>
+</html>
