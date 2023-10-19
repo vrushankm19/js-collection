@@ -51,3 +51,10 @@
 <a href="https://elaborate-vacherin-9269ea.netlify.app/line limit/Line Show CSS And JS.html" target="_blank">Line Show CSS And JS</a>
 
 <a href="https://elaborate-vacherin-9269ea.netlify.app/line limit/read-more.html" target="_blank">READMORE.JS Example</a>
+
+
+## Star Rating
+
+
+<a href="https://elaborate-vacherin-9269ea.netlify.app/Rating/star.html" target="_blank">Rating</a>
+
