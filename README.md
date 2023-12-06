@@ -28,6 +28,8 @@
 
 <a href="https://vrushankm19.netlify.app/Popup/PopUp-rel.html" target="_blank">PopUp-rel.html</a>
 
+<a href="https://vrushankm19.netlify.app/Popup/PopUp-rel_v2.html" target="_blank">New PopUp-rel.html</a>
+
 
 ## Tabs
 
