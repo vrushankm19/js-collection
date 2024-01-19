@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Custom Form</title>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css"
+            integrity="sha512-b2QcS5SsA8tZodcDtGRELiGv5SaKSk1vDHDaQRda0htPYWZ6046lr3kJ5bAAQdpV2mmA/4v0wQF9MyU6/pDIAg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
+    </head>
+    <body>
+        <!-- "Upasna has created this form." -->
+        <form id="kiraForm" class="kira_form">
+            <div class="form-group-grid">
+                <div class="form-group">
+                    <input type="text" class="form-control alpha-only" name="name" id="name" placeholder="Name" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="name-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" name="location" id="location" placeholder="Location" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="location-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="Email ID" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="email-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control alpha-only" name="designation" id="designation" placeholder="Designation" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="designation-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <input type="tel" class="form-control numeric-only" name="contact_number" id="contact" placeholder="Contact No." autocomplete="off" maxlength="14" onpaste="return false;" />
+                    <div class="kira_form_error" id="contact-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <!-- <select class="form-control" name="company" id="companyDropdown1" autocomplete="off">
+                                        <option value="" disabled selected>Company Name</option>
+                                        <option value="Company A">Company A</option>
+                                        <option value="Company B">Company B</option>
+                                        <option value="Company C">Company C</option>
+                                    </select> -->
+                    <input type="text" class="form-control" name="company" id="companyDropdown1" placeholder="Company Name" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="companyDropdown1-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <!-- <select class="form-control" name="company2" id="companyDropdown2" autocomplete="off">
+                                        <option value="" disabled selected>Company Name</option>
+                                        <option value="Company Y">Company Y</option>
+                                        <option value="Company Z">Company Z</option>
+                                    </select> -->
+                    <input type="text" class="form-control" name="comment" id="companyDropdown2" placeholder="Additional Comment" autocomplete="off" maxlength="200" onpaste="return false;" />
+                    <div class="kira_form_error" id="companyDropdown2-error"></div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary white w-100" id="enquireBtn">
+                <span>SUBMIT</span>
+                <!-- <img  src="./assets/images/icons/right-pc.svg" alt=""> -->
+            </button>
+
+            <div id="enquirySuccess" style="display: none;">Your response has been received. Thank You!</div>
+        </form>
+
+        <!-- Include any necessary JavaScript libraries -->
+        <!-- Example: <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> -->
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+            integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        ></script>
+        <!-- Your JavaScript code here -->
+        <script>
+            // *********************************************
+            //     Form start 🚩
+            // ****************************
+            const alphaOnly = document.querySelectorAll(".alpha-only");
+            alphaOnly.forEach(function (element) {
+                element.addEventListener("beforeinput", function (event) {
+                    if (event.inputType === "deleteContentBackward") {
+                        return;
+                    }
+                    var value = this.value;
+                    if (!/^[a-zA-Z ]$/.test(event.data) || (event.data === " " && value.length === 0)) {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+            const alphaNumeric = document.querySelectorAll(".alpha-numeric-only");
+            alphaNumeric.forEach(function (element) {
+                element.addEventListener("beforeinput", function (event) {
+                    if (event.inputType === "deleteContentBackward") {
+                        return;
+                    }
+
+                    var value = this.value;
+
+                    if (!/^[a-zA-Z0-9\s]*$/.test(value + event.data)) {
+                        event.preventDefault();
+                    }
+                });
+            });
+
+            const numericOnly = document.querySelectorAll(".numeric-only");
+
+            numericOnly.forEach(function (element) {
+                element.addEventListener("input", function (event) {
+                    const inputValue = event.target.value;
+
+                    // Use a regular expression to allow only numeric values
+                    const numericRegex = /^\d*$/;
+
+                    if (!numericRegex.test(inputValue)) {
+                        // If the input is not numeric, prevent the default behavior
+                        event.preventDefault();
+                        // Optionally, you can trim non-numeric characters
+                        event.target.value = inputValue.replace(/\D/g, "");
+                    }
+                });
+            });
+
+            // ---------------------------------------
+
+            // Only Alphabets Validation
+            $("#Username, #ParentName").on("input", function () {
+                var inputValue = $(this).val();
+                var regex = /^[A-Za-z][A-Za-z ]*$/;
+                if (!regex.test(inputValue)) {
+                    var cleanedValue = inputValue
+                        .replace(/[^A-Za-z ]/g, "")
+                        .replace(/  +/g, " ")
+                        .trim();
+                    $(this).val(cleanedValue);
+                }
+            });
+
+            // Mobile number validation only numbers allowed
+            $("#phone")
+                .on("keypress", function (evt) {
+                    var charCode = evt.which ? evt.which : evt.keyCode;
+                    if (charCode > 31 && (charCode < 48 || charCode > 57)) return false;
+                    if ($(this).val().length >= 10) evt.preventDefault();
+                    return true;
+                })
+                .on("keyup", function () {
+                    var mobval = parseInt($("#phone").val().substr(0, 2));
+                    var mobvalfirstdigit = parseInt($("#phone").val().substr(0, 1));
+                    if (mobval < 60 && ![6, 7, 8, 9].includes(mobvalfirstdigit)) {
+                        $(this).val("");
+                    }
+                });
+
+            // First letter cannot be space for any field validation
+            $("#email, #TokenNumber, #AccountName, #AccountNumber, #IfscCode").on("keypress", function (event) {
+                if (event.which === 32 && $(this).val().length === 0) {
+                    event.preventDefault();
+                }
+            });
+
+            // IFSc code validation
+            function isValidIFSCCode(ifsc) {
+                ifsc = ifsc.toUpperCase();
+                var ifscPattern = /^[A-Z]{4}0[A-Z0-9]{6}$/;
+                return ifscPattern.test(ifsc);
+            }
+
+            // Function to clear error messages for a given field
+            function clearErrorMessage(fieldId) {
+                $("#" + fieldId + "-error").text("");
+            }
+
+            // Add input event listeners to clear error messages on input
+            $("#name, #location, #contact, #email, #designation,#companyDropdown1,#companyDropdown2").on("input", function () {
+                clearErrorMessage($(this).attr("id"));
+            });
+
+            // $('#companyDropdown1:first,#companyDropdown2:first').val('');
+
+            function isValidEmail(email) {
+                var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Form submit
+            var formSubmitted = false;
+            $("#enquireBtn").click(function (e) {
+                if (formSubmitted) {
+                    e.preventDefault();
+                    return;
+                }
+                e.preventDefault();
+                $(".basic-error-message").text("");
+                var validations = [
+                    { fieldId: "name", required: true },
+                    { fieldId: "location", required: true },
+                    { fieldId: "email", required: true },
+                    { fieldId: "contact", required: true, minLength: 10 },
+                    { fieldId: "designation", required: true },
+                    { fieldId: "companyDropdown1", required: true },
+                    { fieldId: "companyDropdown2", required: true },
+                ];
+
+                validations.forEach(function (validation) {
+                    var inputField = $("#" + validation.fieldId);
+                    var inputValue = inputField.val();
+
+                    if (validation.required && inputValue === "") {
+                        $("#" + validation.fieldId + "-error").text("Field is required.");
+                    } else {
+                        if ((validation.fieldId === "phone" || validation.fieldId === "TokenNumber" || validation.fieldId === "AccountNumber") && inputValue.length < validation.minLength) {
+                            $("#" + validation.fieldId + "-error").text(validation.fieldId + " must be at least " + validation.minLength + " characters.");
+                        }
+                        if (validation.fieldId === "email" && !isValidEmail(inputValue)) {
+                            $("#" + validation.fieldId + "-error").text("Invalid email format.");
+                        }
+                        if ((validation.fieldId === "companyDropdown1" || validation.fieldId === "companyDropdown2") && !inputField.val()) {
+                            $("#" + validation.fieldId + "-error").text("Please select an option.");
+                        }
+                    }
+                });
+
+                if (
+                    validations.some(function (validation) {
+                        return $("#" + validation.fieldId + "-error").text() !== "";
+                    })
+                ) {
+                    console.log("Something went wrong!");
+                    e.preventDefault();
+                } else {
+                    // Submit the form
+                    $.ajax({
+                        type: "POST",
+                        url: "formsubmit.php",
+                        data: $("#kiraForm").serialize(),
+                        success: function (data) {
+                            if (data) {
+                                $("#kiraForm #enquireBtn").hide();
+                                $("#enquirySuccess").css("color", "white");
+                                $("#enquirySuccess").show();
+                                console.log(data);
+                                // Reset the form
+                                document.getElementById("kiraForm").reset();
+                                console.log("Form submitted successfully!");
+                            } else {
+                                e.preventDefault();
+                                console.log("Submission was failed!");
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            e.preventDefault();
+                            console.log("An error occurred.");
+                            console.log("Status:", status);
+                            console.log("Error:", error);
+                            $("#enquirySuccess").css("color", "red");
+                            $("#enquirySuccess").text("Something went wrong!").show();
+                        },
+                    });
+                }
+            });
+
+            // Autocomplete hide
+            $("#basicform input").attr("autocomplete", "off");
+
+            // Copy-paste validation
+            $("#basicform input")
+                .on("paste", function (e) {
+                    e.preventDefault();
+                    $(this).val("");
+                })
+                .on("contextmenu", function (e) {
+                    e.preventDefault();
+                });
+        </script>
+    </body>
+</html>
