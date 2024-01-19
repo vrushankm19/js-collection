@@ -46,6 +46,8 @@
 
 <a href="https://vrushankm19.netlify.app/form/Form Validation JS using before input event  works on both mobile as well as desktop.html" target="_blank">Form Validation JS using before input event  works on both mobile as well as desktop</a>
 
+<a href="https://vrushankm19.netlify.app/form/custom-form.html" target="_blank">Custom Form</a>
+
 
 ## Line Show CSS And JS
 
