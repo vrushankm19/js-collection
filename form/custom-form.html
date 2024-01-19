@@ -14,31 +14,31 @@
     </head>
     <body>
         <!-- "Upasna has created this form." -->
-        <form id="kiraForm" class="kira_form">
+        <form id="yourForm" class="your_form">
             <div class="form-group-grid">
                 <div class="form-group">
                     <input type="text" class="form-control alpha-only" name="name" id="name" placeholder="Name" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="name-error"></div>
+                    <div class="your_form_error" id="name-error"></div>
                 </div>
 
                 <div class="form-group">
                     <input type="text" class="form-control" name="location" id="location" placeholder="Location" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="location-error"></div>
+                    <div class="your_form_error" id="location-error"></div>
                 </div>
 
                 <div class="form-group">
                     <input type="email" class="form-control" name="email" id="email" placeholder="Email ID" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="email-error"></div>
+                    <div class="your_form_error" id="email-error"></div>
                 </div>
 
                 <div class="form-group">
                     <input type="text" class="form-control alpha-only" name="designation" id="designation" placeholder="Designation" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="designation-error"></div>
+                    <div class="your_form_error" id="designation-error"></div>
                 </div>
 
                 <div class="form-group">
                     <input type="tel" class="form-control numeric-only" name="contact_number" id="contact" placeholder="Contact No." autocomplete="off" maxlength="14" onpaste="return false;" />
-                    <div class="kira_form_error" id="contact-error"></div>
+                    <div class="your_form_error" id="contact-error"></div>
                 </div>
 
                 <div class="form-group">
@@ -49,7 +49,7 @@
                                         <option value="Company C">Company C</option>
                                     </select> -->
                     <input type="text" class="form-control" name="company" id="companyDropdown1" placeholder="Company Name" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="companyDropdown1-error"></div>
+                    <div class="your_form_error" id="companyDropdown1-error"></div>
                 </div>
 
                 <div class="form-group">
@@ -59,7 +59,7 @@
                                         <option value="Company Z">Company Z</option>
                                     </select> -->
                     <input type="text" class="form-control" name="comment" id="companyDropdown2" placeholder="Additional Comment" autocomplete="off" maxlength="200" onpaste="return false;" />
-                    <div class="kira_form_error" id="companyDropdown2-error"></div>
+                    <div class="your_form_error" id="companyDropdown2-error"></div>
                 </div>
             </div>
 
@@ -226,16 +226,17 @@
                     // Submit the form
                     $.ajax({
                         type: "POST",
-                        url: "formsubmit.php",
-                        data: $("#kiraForm").serialize(),
+                        // add your php file here...
+                        url: "your-formsubmit-file.php",
+                        data: $("#yourForm").serialize(),
                         success: function (data) {
                             if (data) {
-                                $("#kiraForm #enquireBtn").hide();
+                                $("#yourForm #enquireBtn").hide();
                                 $("#enquirySuccess").css("color", "white");
                                 $("#enquirySuccess").show();
                                 console.log(data);
                                 // Reset the form
-                                document.getElementById("kiraForm").reset();
+                                document.getElementById("yourForm").reset();
                                 console.log("Form submitted successfully!");
                             } else {
                                 e.preventDefault();
