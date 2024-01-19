@@ -84,49 +84,34 @@
             // *********************************************
             //     Form start 🚩
             // ****************************
-            const alphaOnly = document.querySelectorAll(".alpha-only");
+            // Alpha-only validation
+            const alphaOnly = document.querySelectorAll('.alpha-only');
             alphaOnly.forEach(function (element) {
-                element.addEventListener("beforeinput", function (event) {
-                    if (event.inputType === "deleteContentBackward") {
-                        return;
-                    }
+                element.addEventListener('input', function (event) {
                     var value = this.value;
-                    if (!/^[a-zA-Z ]$/.test(event.data) || (event.data === " " && value.length === 0)) {
-                        event.preventDefault();
+                    if (!/^[a-zA-Z ]*$/.test(value)) {
+                        this.value = value.replace(/[^a-zA-Z ]/g, ''); // Remove invalid characters
                     }
                 });
             });
 
-            const alphaNumeric = document.querySelectorAll(".alpha-numeric-only");
+            // Alpha-numeric validation
+            const alphaNumeric = document.querySelectorAll('.alpha-numeric-only');
             alphaNumeric.forEach(function (element) {
-                element.addEventListener("beforeinput", function (event) {
-                    if (event.inputType === "deleteContentBackward") {
-                        return;
-                    }
-
+                element.addEventListener('input', function (event) {
                     var value = this.value;
-
-                    if (!/^[a-zA-Z0-9\s]*$/.test(value + event.data)) {
-                        event.preventDefault();
+                    if (!/^[a-zA-Z0-9\s]*$/.test(value)) {
+                        this.value = value.replace(/[^a-zA-Z0-9\s]/g, ''); // Remove invalid characters
                     }
                 });
             });
 
-            const numericOnly = document.querySelectorAll(".numeric-only");
-
+            // Numeric-only validation
+            const numericOnly = document.querySelectorAll('.numeric-only');
             numericOnly.forEach(function (element) {
-                element.addEventListener("input", function (event) {
-                    const inputValue = event.target.value;
-
-                    // Use a regular expression to allow only numeric values
-                    const numericRegex = /^\d*$/;
-
-                    if (!numericRegex.test(inputValue)) {
-                        // If the input is not numeric, prevent the default behavior
-                        event.preventDefault();
-                        // Optionally, you can trim non-numeric characters
-                        event.target.value = inputValue.replace(/\D/g, "");
-                    }
+                element.addEventListener('input', function (event) {
+                    var value = this.value;
+                    this.value = value.replace(/\D/g, ''); // Remove non-numeric characters
                 });
             });
 
