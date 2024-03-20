@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UTM Parameter Example</title>
+  <!-- Include jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+  https://google.com?utm_source=test&utm_medium=testtest&utm_campaign=test
+
+  <form id="utmForm">
+    <label for="utm_source">UTM Source:</label>
+    <input type="text" name="utm_source" id="utm_source" readonly>
+
+    <label for="utm_medium">UTM Medium:</label>
+    <input type="text" name="utm_medium" id="utm_medium" readonly>
+
+    <label for="utm_campaign">UTM Campaign:</label>
+    <input type="text" name="utm_campaign" id="utm_campaign" readonly>
+  </form>
+
+  <script>
+    // Function to get parameter value from URL
+    function getParamValue(param) {
+      var urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    // Set the value of the form fields with UTM parameters
+    var utmSourceValue = getParamValue('utm_source');
+    var utmMediumValue = getParamValue('utm_medium');
+    var utmCampaignValue = getParamValue('utm_campaign');
+
+    $('#utm_source').val(utmSourceValue);
+    $('#utm_medium').val(utmMediumValue);
+    $('#utm_campaign').val(utmCampaignValue);
+  </script>
+
+</body>
+</html>
