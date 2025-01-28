@@ -1,1 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lazy Load Multiple YouTube Videos</title>
+    <style>
+        .video-thumbnail {
+            position: relative;
+            cursor: pointer;
+            width: 100%;
+            max-width: 560px;
+            margin-bottom: 20px;
+        }
+        .video-thumbnail img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            border: none;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .play-button:after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 0;
+            border-left: 15px solid white;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Video Thumbnails -->
+<div class="video-thumbnail" data-video-id="4dCJ6C-mT3k">
+    <img src="https://img.youtube.com/vi/4dCJ6C-mT3k/hqdefault.jpg" alt="Video Thumbnail">
+    <button class="play-button"></button>
+</div>
+
+<div class="video-thumbnail" data-video-id="Z-7YqlaHewE">
+    <img src="https://img.youtube.com/vi/Z-7YqlaHewE/hqdefault.jpg" alt="Video Thumbnail">
+    <button class="play-button"></button>
+</div>
+
+<div class="video-thumbnail" data-video-id="FnCPCLIG8YLH9K_l">
+    <img src="https://img.youtube.com/vi/FnCPCLIG8YLH9K_l/hqdefault.jpg" alt="Video Thumbnail">
+    <button class="play-button"></button>
+</div>
+
+<script>
+    // Function to load video
+    function loadVideo(event) {
+        const videoThumbnail = event.currentTarget;
+        const videoId = videoThumbnail.getAttribute('data-video-id');
+
+        // Replace the thumbnail with the iframe
+        videoThumbnail.innerHTML = `
+            <iframe 
+                width="100%" 
+                height="415" 
+                src="https://www.youtube.com/embed/${videoId}?rel=0&fs=0&autoplay=1" 
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                referrerpolicy="strict-origin-when-cross-origin" 
+                allowfullscreen>
+            </iframe>
+        `;
+    }
+
+    // Attach event listeners to all video thumbnails
+    const thumbnails = document.querySelectorAll('.video-thumbnail');
+    thumbnails.forEach(thumbnail => {
+        thumbnail.addEventListener('click', loadVideo);
+    });
+</script>
+
+</body>
+</html>
 
