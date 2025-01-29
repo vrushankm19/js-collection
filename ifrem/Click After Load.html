@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lazy Load Multiple YouTube Videos</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         .video-thumbnail {
             position: relative;
@@ -60,34 +61,28 @@
     <button class="play-button"></button>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-    // Function to load video
-    function loadVideo(event) {
-        const videoThumbnail = event.currentTarget;
-        const videoId = videoThumbnail.getAttribute('data-video-id');
-
-        // Replace the thumbnail with the iframe
-        videoThumbnail.innerHTML = `
-            <iframe 
-                width="100%" 
-                height="415" 
-                src="https://www.youtube.com/embed/${videoId}?rel=0&fs=0&autoplay=1" 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" 
-                allowfullscreen>
-            </iframe>
-        `;
-    }
-
-    // Attach event listeners to all video thumbnails
-    const thumbnails = document.querySelectorAll('.video-thumbnail');
-    thumbnails.forEach(thumbnail => {
-        thumbnail.addEventListener('click', loadVideo);
+    $(document).ready(function() {
+        $('.video-thumbnail').on('click', function() {
+            var videoId = $(this).data('video-id');
+            
+            // Replace the thumbnail with the iframe
+            $(this).html(`
+                <iframe 
+                    width="100%" 
+                    height="415" 
+                    src="https://www.youtube.com/embed/${videoId}?rel=0&fs=0&autoplay=1" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            `);
+        });
     });
 </script>
 
 </body>
 </html>
-
